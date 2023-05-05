@@ -22,35 +22,37 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=420
 
-# Brightness
-SOONG_CONFIG_qtidisplay_brightness := true
+# AB Partitions
+AB_OTA_PARTITIONS += \
+    system_ext \
+    vendor_boot
+
+# Device characteristics
+DEVICE_CHARACTERISTICS := ufs
 
 # Device path
-DEVICE_PATH := device/motorola/milanf/rootdir
-
-# Device Init
-PRODUCT_PACKAGES += \
-    fstab.qcom.vendor_ramdisk \
-    fstab.qcom
+DEVICE_PATH := device/motorola/rhode/rootdir
 
 # Fingerprint
 TARGET_USES_EGISTEC_FINGERPRINT := true
-TARGET_USES_SILEAD_FINGERPRINT := true
+TARGET_USES_FOCAL_FINGERPRINT := true
 
 # Modules
 BOOT_KERNEL_MODULES := \
+    cw2217b_fg.ko \
+    sm5602_fg_mmi.ko \
+    bq2589x_charger.ko \
+    bq2597x_mmi_iio.ko \
+    sgm4154x_charger.ko \
     tcpc_sgm7220.ko \
     tcpc_rt1711h.ko \
     rt_pd_manager.ko
 
 # NFC
-TARGET_USES_PN5XX_PN8X_NFC := true
-
-# Power
-TARGET_IS_BLAIR := true
+TARGET_USES_SEC_NFC := true
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/motorola/sm4350-common/platform.mk)
+$(call inherit-product, device/motorola/sm4250-common/platform.mk)
 
 # include board vendor blobs
-$(call inherit-product-if-exists, vendor/motorola/milanf/milanf-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/rhode/rhode-vendor.mk)
