@@ -28,7 +28,7 @@ AB_OTA_PARTITIONS += \
     vendor_boot
 
 # Device characteristics
-DEVICE_CHARACTERISTICS := ufs
+DEVICE_CHARACTERISTICS := hfr ufs
 
 # Device path
 DEVICE_PATH := device/motorola/rhode/rootdir
